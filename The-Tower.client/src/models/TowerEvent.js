@@ -1,6 +1,6 @@
 
 
-export class Event {
+export class TowerEvent {
   constructor(data) {
     this.id = data.id
     this.creatorId = data.creatorId
