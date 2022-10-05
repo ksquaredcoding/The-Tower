@@ -7,6 +7,7 @@ class TowerEventsService {
     const events = await dbContext.TowerEvents.find().populate('creator', 'name picture').populate('tickets')
     return events
   }
+
   async getEventById(eventId) {
     const event = await dbContext.TowerEvents.findById(eventId).populate('creator', 'name picture').populate('tickets')
     if (!event) {
@@ -14,6 +15,7 @@ class TowerEventsService {
     }
     return event
   }
+
   async getEventIfNotCanceled(eventId) {
     const event = await this.getEventById(eventId)
     if (event.isCanceled) {
@@ -21,20 +23,19 @@ class TowerEventsService {
     }
     return event
   }
+
   async createEvent(eventData) {
     const event = await dbContext.TowerEvents.create(eventData)
     await event.populate('creator', 'name picture')
     await event.populate('tickets')
     return event
   }
+
   async editEvent(eventId, eventData, userId) {
-    const event = await this.getEventById(eventId)
+    const event = await this.getEventIfNotCanceled(eventId)
     // @ts-ignore
     if (event.creatorId.toString() !== userId) {
       throw new Forbidden("You can't edit events that aren't yours.")
-    }
-    if (event.isCanceled) {
-      throw new Forbidden("You can't edit canceled events.")
     }
     event.name = eventData.name || event.name
     event.description = eventData.description || event.description
@@ -47,6 +48,7 @@ class TowerEventsService {
     await event.save()
     return event
   }
+
   async cancelEvent(eventId, userId) {
     const event = await this.getEventById(eventId)
     const tickets = await ticketsService.getTicketsByEvent(eventId)
