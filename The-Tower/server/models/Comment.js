@@ -5,7 +5,7 @@ export const CommentSchema = new Schema({
   creatorId: { type: ObjectId, required: true, ref: 'Account' },
   eventId: { type: ObjectId, required: true, ref: 'TowerEvent' },
   body: { type: String, required: true, minlength: 3, maxlength: 500 },
-  isAttending: { type: Boolean }
+  isAttending: { type: Boolean, default: false }
 }, SCHEMA_OPTIONS)
 
 CommentSchema.virtual('creator', {
