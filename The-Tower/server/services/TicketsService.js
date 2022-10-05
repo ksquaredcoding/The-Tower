@@ -46,7 +46,7 @@ class TicketsService {
     if (ticket.accountId.toString() !== userId) {
       throw new Forbidden("You can't delete tickets that aren't yours.")
     }
-    ticket.remove()
+    await ticket.remove()
     // @ts-ignore
     event.capacity++
     await event.save()
