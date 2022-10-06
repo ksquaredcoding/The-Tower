@@ -33,6 +33,7 @@ export default {
   background-position: center;
   overflow: hidden;
   position: relative;
+  border-radius: 3%;
 }
 
 .event-details {
