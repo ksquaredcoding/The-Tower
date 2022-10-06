@@ -27,6 +27,10 @@
         </div>
       </div>
     </div>
+    <h5>See who is attending</h5>
+    <div class="row">
+      <EventAttendee v-for="a in attendees" :attendee="a" />
+    </div>
   </div>
 </template>
 
@@ -50,11 +54,22 @@ export default {
       }
     }
 
+    async function getEventAttendees() {
+      try {
+        await eventsService.getEventAttendees(route.params.id)
+      } catch (error) {
+        console.error("[GETTING EVENT ATTENDEES]", error);
+        Pop.error(error.message);
+      }
+    }
+
     onMounted(() => {
       getEventById()
+      getEventAttendees()
     })
     return {
       activeEvent: computed(() => AppState.activeEvent),
+      attendees: computed(() => AppState.attendees)
     }
   }
 }
