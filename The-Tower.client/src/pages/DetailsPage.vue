@@ -22,8 +22,10 @@
         </div>
         <div class="d-flex justify-content-between">
           <p class="event-text"><b class="event-cap fs-4">{{activeEvent?.capacity}}</b> <b>spots left</b></p>
-          <button class="btn btn-warning" type="button" aria-label="Attend Event" title="Attend">Attend <i
-              class="bi bi-person-check-fill"></i></button>
+          <button class="btn btn-danger" type="button" aria-label="Cancel Ticket" title="Cancel Ticket"
+            @click="cancelTicket()" v-if="isAttending">Cancel Ticket <i class="bi bi-person-dash-fill"></i></button>
+          <button class="btn btn-warning" type="button" aria-label="Attend Event" title="Attend" @click="attendEvent()"
+            v-else>Attend <i class="bi bi-person-check-fill"></i></button>
         </div>
       </div>
     </div>
@@ -33,13 +35,15 @@
     </div>
   </div>
 </template>
-
+<!-- TODO let people attend events -->
 <script>
 import { computed } from "@vue/reactivity";
 import { onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { AppState } from "../AppState.js";
+import { AuthService } from "../services/AuthService.js";
 import { eventsService } from "../services/EventsService.js";
+import Pop from "../utils/Pop.js";
 
 export default {
   setup() {
@@ -69,7 +73,22 @@ export default {
     })
     return {
       activeEvent: computed(() => AppState.activeEvent),
-      attendees: computed(() => AppState.attendees)
+      attendees: computed(() => AppState.attendees),
+      isAttending: computed(() => AppState.attendees.find(a => a.accountId == AppState.account.id && a.eventId == AppState.activeEvent.id)),
+      async attendEvent() {
+        try {
+          if (!AppState.account.id) {
+            return AuthService.loginWithRedirect()
+          }
+          await eventsService.attendEvent({
+            eventId: AppState.activeEvent.id || route.params.id
+          })
+          Pop.success("Thanks for attending this event!")
+        } catch (error) {
+          console.error("[ATTEND EVENT]", error);
+          Pop.error(error.message);
+        }
+      }
     }
   }
 }
