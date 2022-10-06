@@ -1,10 +1,17 @@
 <template>
   <div class="col-md-3 event-cover m-2">
-    <div class="event-details event-text">
-      <h4 class="event-title">{{event?.name}}</h4>
-      <p>{{event?.location}}</p>
-      <p>{{event?.startDate}}</p>
-    </div>
+    <router-link :to="{name: 'Details', params: {id: event?.id}}">
+      <div class="event-details event-text selectable" :title="event?.name">
+        <h4 class="event-title">{{event?.name}}</h4>
+        <p>{{event?.location}}</p>
+        <div class="d-flex event-text">
+          <p class="me-2 pe-2">{{new Date(event?.startDate).toLocaleDateString('en-us', {month: 'short', day: '2-digit',
+          year: 'numeric'})}}
+          </p>
+          <p class="ms-5 ps-1"><b>{{event?.capacity}}</b> spots left</p>
+        </div>
+      </div>
+    </router-link>
   </div>
 </template>
 
@@ -39,7 +46,7 @@ export default {
 .event-details {
   position: absolute;
   top: 8rem;
-  background: rgba(204, 243, 253, 0.2);
+  background: rgba(78, 81, 82, 0.2);
   border: 1px solid rgba(86, 199, 251, 0.2);
   backdrop-filter: blur(10px);
   border-radius: 3%;
@@ -51,13 +58,13 @@ export default {
 
 .event-text {
   color: #CCF3FD;
-  text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 0px 0px 4px rgba(44, 44, 44, 0.616);
   letter-spacing: 0.05em;
 }
 
 .event-title {
   color: #eaeaea;
-  text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 1px 1px 5px rgba(49, 48, 48, 0.638);
   letter-spacing: 0.05em;
 }
 </style>

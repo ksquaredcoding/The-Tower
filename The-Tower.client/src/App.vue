@@ -2,7 +2,7 @@
   <header>
     <Navbar />
   </header>
-  <main class="bg-dark">
+  <main class="dark-main-bg">
     <router-view />
   </main>
 </template>
@@ -23,4 +23,8 @@ export default {
 </script>
 <style lang="scss">
 @import "./assets/scss/main.scss";
+
+.dark-main-bg {
+  background-color: #25334a;
+}
 </style>
