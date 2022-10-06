@@ -1,6 +1,6 @@
 
 
-export class Comment {
+export class TowerComment {
   constructor(data) {
     this.id = data.id
     this.creatorId = data.creatorId

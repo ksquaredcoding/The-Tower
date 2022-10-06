@@ -1,6 +1,6 @@
 <template>
   <img :src="attendee?.account.picture" :alt="attendee?.account.name" :title="attendee?.account.name"
-    class="rounded-circle">
+    class="rounded-circle img-fluid">
 </template>
 
 
@@ -19,6 +19,6 @@ export default {
 <style lang="scss" scoped>
 img {
   height: 3rem;
-  width: 3rem;
+  width: 4rem;
 }
 </style>
