@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row justify-content-evenly">
     <EventCard v-for="e in events" :event="e" :key="e.id" />
   </div>
 </template>
