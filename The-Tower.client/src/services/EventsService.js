@@ -9,7 +9,17 @@ import { router } from "../router.js"
 class EventsService {
   async getAllEvents() {
     const res = await api.get('/api/events')
-    AppState.events = res.data.map(e => new TowerEvent(e))
+    AppState.events = res.data.map(e => new TowerEvent(e)).filter(e => !e.isCanceled)
+  }
+
+  async getEventsByType(type) {
+    await this.getAllEvents()
+    AppState.events = AppState.events.filter(e => e.type == type)
+  }
+
+  async getCanceledEvents() {
+    const res = await api.get('/api/events')
+    AppState.events = res.data.map(e => new TowerEvent(e)).filter(e => e.isCanceled)
   }
 
   async getEventById(id) {
