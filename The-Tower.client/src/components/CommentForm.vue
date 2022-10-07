@@ -18,6 +18,7 @@
 
 <script>
 import { ref } from "vue";
+import { computed } from "@vue/reactivity";
 import Pop from "../utils/Pop.js";
 import { commentsService } from '../services/CommentsService.js';
 import { AppState } from "../AppState.js";

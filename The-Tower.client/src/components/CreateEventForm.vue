@@ -44,7 +44,8 @@
           </select>
         </div>
         <div class="my-3">
-          <button class="btn btn-primary" type="submit" data-bs-dismiss="offcanvas">Create Event</button>
+          <button class="btn btn-primary" type="submit" data-bs-dismiss="offcanvas" title="Create Event">Create
+            Event</button>
         </div>
       </form>
     </div>
