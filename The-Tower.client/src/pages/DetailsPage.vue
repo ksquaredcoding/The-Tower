@@ -1,3 +1,4 @@
+<!-- TODO make spots not show when event is canceled -->
 <template>
   <div class="container-fluid text-light">
     <div class="row mx-1 my-2 rounded" :style="{backgroundImage: `url(${activeEvent?.coverImg})`}"
