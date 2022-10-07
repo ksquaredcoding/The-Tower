@@ -36,7 +36,7 @@
         </div>
         <div>
           <label for="type">Event Type:</label>
-          <select name="type" v-model="editable.type">
+          <select name="type" v-model="editable.type" required>
             <option value="concert">Concert</option>
             <option value="convention">Convention</option>
             <option value="sport">Sport</option>
@@ -66,8 +66,9 @@ export default {
         try {
           const eventData = editable.value
           await eventsService.createEvent(eventData)
+          editable.value = {}
         } catch (error) {
-          console.error('[EDIT EVENT]', error)
+          console.error('[CREATE EVENT]', error)
           Pop.error(error.message)
         }
       }

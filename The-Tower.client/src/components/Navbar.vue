@@ -14,7 +14,7 @@
       <Login />
       <button class="btn" data-bs-target="#eventCreate" data-bs-toggle="offcanvas" v-if="account.id">
         <span class="text-success lighten-30 selectable text-uppercase">
-          Create Post
+          Create Event
         </span>
       </button>
     </div>

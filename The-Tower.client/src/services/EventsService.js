@@ -65,6 +65,7 @@ class EventsService {
     const res = await api.post('api/events', eventData)
     const towerEvent = new TowerEvent(res.data)
     AppState.events = [towerEvent, ...AppState.events]
+    AppState.activeEvent = null
     AppState.activeEvent = towerEvent
     router.push({ name: 'Details', params: { id: towerEvent.id } })
   }
