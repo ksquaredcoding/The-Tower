@@ -12,15 +12,25 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <!-- LOGIN COMPONENT HERE -->
       <Login />
+      <button class="btn" data-bs-target="#eventCreate" data-bs-toggle="offcanvas" v-if="account.id">
+        <span class="text-success lighten-30 selectable text-uppercase">
+          Create Post
+        </span>
+      </button>
     </div>
   </nav>
 </template>
 
 <script>
 import Login from './Login.vue'
+import { computed } from "@vue/reactivity";
+import { AppState } from "../AppState.js";
+
 export default {
   setup() {
-    return {}
+    return {
+      account: computed(() => AppState.account)
+    }
   },
   components: { Login }
 }

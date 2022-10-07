@@ -3,6 +3,7 @@ import { Attendee } from "../models/Attendee.js";
 import { TowerComment } from "../models/TowerComment.js";
 import { TowerEvent } from "../models/TowerEvent.js";
 import { api } from "./AxiosService.js"
+import { router } from "../router.js"
 
 
 class EventsService {
@@ -49,6 +50,23 @@ class EventsService {
   async bringBackEvent(eventId) {
     await api.delete(`api/events/${eventId}`)
     AppState.activeEvent.isCanceled = false
+  }
+
+  async editEvent(eventData) {
+    const eventId = AppState.activeEvent?.id
+    const eventIndex = AppState.events.findIndex(e => e.id == eventId)
+    const res = await api.put(`/api/events/${eventId}`, eventData)
+    const editedEvent = new TowerEvent(res.data)
+    AppState.events.splice(eventIndex, 1, editedEvent)
+    AppState.activeEvent = editedEvent
+  }
+
+  async createEvent(eventData) {
+    const res = await api.post('api/events', eventData)
+    const towerEvent = new TowerEvent(res.data)
+    AppState.events = [towerEvent, ...AppState.events]
+    AppState.activeEvent = towerEvent
+    router.push({ name: 'Details', params: { id: towerEvent.id } })
   }
 }
 

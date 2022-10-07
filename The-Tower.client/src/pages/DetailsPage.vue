@@ -45,6 +45,12 @@
             @click="bringBackEvent()" v-else-if="activeEvent?.creatorId == account.id && isCanceled">Uncancel
             Event <i class="bi bi-calendar-check-fill"></i></button>
         </div>
+        <div class="d-flex justify-content-end mt-5">
+          <button class="btn btn-info" data-bs-target="#eventEdit" data-bs-toggle="offcanvas"
+            v-if="account.id == activeEvent?.creatorId && !isCanceled">
+            Edit Event
+          </button>
+        </div>
       </div>
     </div>
     <h5>See who is attending</h5>
