@@ -51,18 +51,19 @@ class TowerEventsService {
 
   async cancelEvent(eventId, userId) {
     const event = await this.getEventById(eventId)
-    const tickets = await ticketsService.getTicketsByEvent(eventId)
     // @ts-ignore
     if (event.creatorId.toString() !== userId) {
       throw new Forbidden("You can't cancel events that aren't yours.")
     }
-    // if (tickets > 0) {
-    event.isCanceled = true
-    await event.save()
-    return event
-    // }
-    // await event.remove()
-    // return event
+    if (event.isCanceled == false) {
+      event.isCanceled = true
+      await event.save()
+      return event
+    } else {
+      event.isCanceled = false
+      await event.save()
+      return event
+    }
   }
 }
 

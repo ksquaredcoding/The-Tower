@@ -38,14 +38,17 @@
         </div>
         <div class="d-flex justify-content-end mt-5">
           <button class="btn btn-danger" type="button" aria-label="Cancel Event" title="Cancel Event"
-            @click="cancelEvent()" v-if="activeEvent?.creatorId == account.id">Cancel Event <i
+            @click="cancelEvent()" v-if="activeEvent?.creatorId == account.id && !isCanceled">Cancel Event <i
               class="bi bi-x-square-fill"></i></button>
+          <button class="btn btn-success" type="button" aria-label="Uncancel Event" title="Uncancel Event"
+            @click="bringBackEvent()" v-else-if="activeEvent?.creatorId == account.id && isCanceled">Uncancel
+            Event <i class="bi bi-calendar-check-fill"></i></button>
         </div>
       </div>
     </div>
     <h5>See who is attending</h5>
-    <div class="row elevation-1 att-bgrd p-1 mx-1 rounded">
-      <EventAttendee v-for="a in attendees" :attendee="a" class="m-1" />
+    <div class="row elevation-1 att-bgrd p-1 mx-1 rounded" v-if="!isCanceled">
+      <EventAttendee v-for="a in attendees" :attendee="a" class="my-1" />
     </div>
     <h5 class="mt-3 mx-2 my-2">What people are saying</h5>
     <div class="row justify-content-center">
@@ -152,6 +155,19 @@ export default {
             return;
           }
           await eventsService.cancelEvent(AppState.activeEvent.id)
+        } catch (error) {
+          console.error("[CANCEL EVENT]", error);
+          Pop.error(error.message);
+        }
+      },
+      async bringBackEvent() {
+        try {
+          const yes = await Pop.confirm("Do you wish to uncancel this event?");
+          if (!yes) {
+            return;
+          }
+          await eventsService.bringBackEvent(AppState.activeEvent.id)
+          await getEventAttendees()
         } catch (error) {
           console.error("[CANCEL EVENT]", error);
           Pop.error(error.message);
