@@ -9,9 +9,9 @@
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarText">
+    <div class="collapse navbar-collapse" id="navbarText" title="Login or Create Event">
       <!-- LOGIN COMPONENT HERE -->
-      <Login />
+      <Login title="Login/Go to Account Page" />
       <button class="btn" data-bs-target="#eventCreate" data-bs-toggle="offcanvas" v-if="account.id"
         title="Create Event" aria-label="Create Event">
         <span class="text-success lighten-30 selectable text-uppercase">

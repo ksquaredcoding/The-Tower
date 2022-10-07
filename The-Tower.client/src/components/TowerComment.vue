@@ -1,14 +1,14 @@
 <template>
   <div class="row">
-    <div class="col-2 mb-2">
+    <div class="col-2 my-2">
       <img :src="towerComment?.creator.picture" :alt="towerComment?.creator.name" :title="towerComment?.creator.name"
         class="rounded-circle img-fluid">
     </div>
-    <div class="col-9 comment-bg rounded text-dark mb-2">
+    <div class="col-9 comment-bg rounded text-dark my-2">
       <div class="d-flex justify-content-between">
         <h5>{{towerComment?.creator.name}} <span></span></h5>
-        <i class="mdi mdi-delete-forever fs-4 selectable rounded text-danger" @click="deleteComment(towerComment.id)"
-          v-if="account.id == towerComment?.creator.id"></i>
+        <i class="mdi mdi-delete-forever fs-4 selectable rounded text-danger" title="Delete Comment"
+          @click="deleteComment(towerComment.id)" v-if="account.id == towerComment?.creator.id"></i>
       </div>
       <p>{{towerComment?.body}}</p>
     </div>

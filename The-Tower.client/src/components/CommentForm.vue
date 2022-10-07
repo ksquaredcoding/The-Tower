@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="handleSubmit">
+  <form @submit.prevent="handleSubmit" v-if="account.id">
     <div class="form-group">
       <div class="d-flex justify-content-end">
         <label for="body" class="text-success mb-1" title="Add Comment" aria-label="Add Comment">Join The
@@ -27,6 +27,7 @@ export default {
     const editable = ref({})
     return {
       editable,
+      account: computed(() => AppState.account),
       async handleSubmit() {
         try {
           const commentData = editable.value

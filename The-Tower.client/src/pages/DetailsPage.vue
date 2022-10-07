@@ -47,7 +47,7 @@
         </div>
         <div class="d-flex justify-content-end mt-5">
           <button class="btn btn-info" data-bs-target="#eventEdit" data-bs-toggle="offcanvas"
-            v-if="account.id == activeEvent?.creatorId && !isCanceled">
+            v-if="account.id == activeEvent?.creatorId && !isCanceled" title="Edit Event" aria-label="Edit Event">
             Edit Event
           </button>
         </div>

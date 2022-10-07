@@ -1,6 +1,6 @@
 <template>
   <h5 class="text-success m-2">My Upcoming Events</h5>
-  <div class="row">
+  <div class="row justify-content-center">
     <Ticket v-for="t in tickets" :ticket="t" />
   </div>
 </template>
