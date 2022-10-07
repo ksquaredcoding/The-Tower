@@ -6,18 +6,18 @@ class TicketsService {
   async getTicketsByEvent(eventId) {
     const event = await towerEventsService.getEventIfNotCanceled(eventId)
     if (event) {
-      const tickets = await dbContext.Tickets.find({ eventId }).populate('account', 'name picture').populate('event', 'name location startDate type')
+      const tickets = await dbContext.Tickets.find({ eventId }).populate('account', 'name picture').populate('towerEvent')
       return tickets
     }
   }
 
   async getMyTickets(accountId) {
-    const tickets = await dbContext.Tickets.find({ accountId }).populate('account', 'name picture').populate('event', 'name location startDate type')
+    const tickets = await dbContext.Tickets.find({ accountId }).populate('account', 'name picture').populate('towerEvent')
     return tickets
   }
 
   async getTicketById(ticketId) {
-    const ticket = await dbContext.Tickets.findById(ticketId).populate('account', 'name picture').populate('event', 'name location startDate type')
+    const ticket = await dbContext.Tickets.findById(ticketId).populate('account', 'name picture').populate('towerEvent')
     if (!ticket) {
       throw new BadRequest('Invalid or Bad ticket Id')
     }
@@ -34,7 +34,7 @@ class TicketsService {
     event.capacity--
     await event.save()
     await ticket.populate('account', 'name picture')
-    await ticket.populate('event', 'name location startDate type')
+    await ticket.populate('towerEvent')
     return ticket
   }
 

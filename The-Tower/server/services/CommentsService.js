@@ -8,12 +8,12 @@ class CommentsService {
     // commentData.isAttending = this.isAttendingEvent(commentData.eventId, commentData.creatorId)
     const comment = await dbContext.Comments.create(commentData)
     await comment.populate('creator', 'name picture')
-    await comment.populate('event', 'name location startDate type')
+    await comment.populate('towerEvent', 'name location startDate type')
     return comment
   }
 
   async getCommentById(commentId) {
-    const comment = await dbContext.Comments.findById(commentId).populate('creator', 'name picture').populate('event', 'name location startDate type')
+    const comment = await dbContext.Comments.findById(commentId).populate('creator', 'name picture').populate('towerEvent', 'name location startDate type')
     if (!comment) {
       throw new BadRequest('Invalid or Bad comment Id')
     }

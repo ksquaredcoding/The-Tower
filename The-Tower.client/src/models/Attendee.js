@@ -7,6 +7,6 @@ export class Attendee {
     this.eventId = data.eventId
     this.profile = data.profile
     this.account = data.account
-    this.event = data.event
+    this.towerEvent = data.towerEvent
   }
 }
