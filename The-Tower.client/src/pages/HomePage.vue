@@ -1,11 +1,15 @@
 <template>
   <div class="d-flex justify-content-around my-3">
-    <button @click="getAllEvents()" class="btn btn-outline-warning">All</button>
-    <button @click="getEventsByType('concert')" class="btn btn-outline-warning">Concert</button>
-    <button @click="getEventsByType('convention')" class="btn btn-outline-warning">Convention</button>
-    <button @click="getEventsByType('sport')" class="btn btn-outline-warning">Sport</button>
-    <button @click="getEventsByType('digital')" class="btn btn-outline-warning">Digital</button>
-    <button @click="getCanceledEvents()" class="btn btn-outline-danger text-light">Canceled</button>
+    <button @click="getAllEvents()" class="btn btn-outline-warning" title="Get All Events">All</button>
+    <button @click="getEventsByType('concert')" class="btn btn-outline-warning"
+      title="Get Concert Events">Concert</button>
+    <button @click="getEventsByType('convention')" class="btn btn-outline-warning"
+      title="Get Convention Events">Convention</button>
+    <button @click="getEventsByType('sport')" class="btn btn-outline-warning" title="Get Sport Events">Sport</button>
+    <button @click="getEventsByType('digital')" class="btn btn-outline-warning"
+      title="Get Digital Events">Digital</button>
+    <button @click="getCanceledEvents()" class="btn btn-outline-danger text-light"
+      title="Get Canceled Events">Canceled</button>
   </div>
   <div class="row justify-content-evenly">
     <EventCard v-for="e in events" :event="e" :key="e.id" />

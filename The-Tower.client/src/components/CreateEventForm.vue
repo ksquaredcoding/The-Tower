@@ -2,14 +2,14 @@
   <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="eventCreate"
     aria-labelledby="eventsCanvasLabel">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="postsCanvasLabel">Create Event</h5>
+      <h5 class="offcanvas-title" id="eventsCanvasLabel">Create Event</h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
       <form @submit.prevent="handleSubmit">
         <div class="form-group">
-          <label for="name">Name:</label>
-          <input type="text" v-model="editable.name" placeholder="name" required class="form-control">
+          <label for="name"> Name:</label>
+          <input type="text" v-model="editable.name" placeholder="name of event" required class="form-control">
         </div>
         <div class="form-group">
           <label for="description">Description</label>

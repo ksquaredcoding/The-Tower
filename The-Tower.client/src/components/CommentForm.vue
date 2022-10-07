@@ -2,13 +2,15 @@
   <form @submit.prevent="handleSubmit">
     <div class="form-group">
       <div class="d-flex justify-content-end">
-        <label for="body" class="text-success mb-1">Join The Conversation</label>
+        <label for="body" class="text-success mb-1" title="Add Comment" aria-label="Add Comment">Join The
+          Conversation</label>
       </div>
-      <textarea v-model="editable.body" placeholder="Tell the people..." class="form-control" rows="4"
-        name="body"></textarea>
+      <textarea v-model="editable.body" placeholder="Tell the people..." class="form-control" rows="4" name="body"
+        title="Add Comment" aria-label="Add Comment"></textarea>
     </div>
     <div class="my-3 d-flex justify-content-end">
-      <button class="btn btn-success" type="submit">Post Comment</button>
+      <button class="btn btn-success" type="submit" title="Submit Comment" aria-label="Submit Comment">Post
+        Comment</button>
     </div>
   </form>
 </template>

@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <img alt="logo" src="src\assets\img\towerlogo.png" height="45" />
+        <img alt="logo" src="src\assets\img\towerlogo.png" height="45" title="Return Home" aria-label="Return Home" />
       </div>
     </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -12,7 +12,8 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <!-- LOGIN COMPONENT HERE -->
       <Login />
-      <button class="btn" data-bs-target="#eventCreate" data-bs-toggle="offcanvas" v-if="account.id">
+      <button class="btn" data-bs-target="#eventCreate" data-bs-toggle="offcanvas" v-if="account.id"
+        title="Create Event" aria-label="Create Event">
         <span class="text-success lighten-30 selectable text-uppercase">
           Create Event
         </span>
